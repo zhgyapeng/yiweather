@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AppPractise</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="yiweather">易天气</string>
+</resources>
