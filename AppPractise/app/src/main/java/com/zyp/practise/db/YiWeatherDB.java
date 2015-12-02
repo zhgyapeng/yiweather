@@ -92,7 +92,7 @@ public class YiWeatherDB {
             city.setId(cursor.getInt(cursor.getColumnIndex("id")));
             city.setName(cursor.getString(cursor.getColumnIndex("city_name")));
             city.setCode(cursor.getString(cursor.getColumnIndex("city_code")));
-            city.setProvinceId(cursor.getInt(cursor.getColumnIndex("province_id")));
+            city.setProvinceId(cursor.getString(cursor.getColumnIndex("province_id")));
             cityArrayList.add(city);
         }
         return cityArrayList;
@@ -107,7 +107,7 @@ public class YiWeatherDB {
             county.setId(cursor.getInt(cursor.getColumnIndex("id")));
             county.setName(cursor.getString(cursor.getColumnIndex("county_name"))) ;
             county.setCode(cursor.getString(cursor.getColumnIndex("county_code")));
-            county.setCityId(cursor.getInt(cursor.getColumnIndex("city_id")));
+            county.setCityId(cursor.getString(cursor.getColumnIndex("city_id")));
             countyArrayList.add(county);
         }
         return countyArrayList;

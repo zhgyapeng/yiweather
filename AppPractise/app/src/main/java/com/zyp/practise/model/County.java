@@ -8,12 +8,12 @@ public class County {
     private Integer id;
     private String name;
     private String code;
-    private Integer cityId;
+    private String cityId;
 
     public County() {
     }
 
-    public County(Integer id, String name, String code, Integer cityId) {
+    public County(Integer id, String name, String code, String cityId) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -44,11 +44,11 @@ public class County {
         this.code = code;
     }
 
-    public Integer getCityId() {
+    public String getCityId() {
         return cityId;
     }
 
-    public void setCityId(Integer cityId) {
+    public void setCityId(String cityId) {
         this.cityId = cityId;
     }
 

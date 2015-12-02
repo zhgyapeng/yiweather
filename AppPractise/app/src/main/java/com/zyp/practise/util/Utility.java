@@ -29,18 +29,18 @@ public class Utility {
         return false;
     }
 
-    public static synchronized boolean handleCityResponse(YiWeatherDB yiWeatherDB,String response,int province_id){
+    public static synchronized boolean handleCityResponse(YiWeatherDB yiWeatherDB,String response,String provinceCode){
         if(!TextUtils.isEmpty(response)){
             String cities[] = response.split(",");
             if(cities==null||cities.length==0){
                 return false;
             }
             for(String city:cities){
-                String p_info[] = city.split("|");
+                String p_info[] = city.split("\\|");
                 City p = new City();
                 p.setCode(p_info[0]);
                 p.setName(p_info[1]);
-                p.setProvinceId(province_id);
+                p.setProvinceId(provinceCode);
                 yiWeatherDB.saveCity(p);
             }
             return true;
@@ -48,18 +48,18 @@ public class Utility {
         return false;
     }
 
-    public static synchronized boolean handleCountyResponse(YiWeatherDB yiWeatherDB,String response,int city_id){
+    public static synchronized boolean handleCountyResponse(YiWeatherDB yiWeatherDB,String response,String city_code){
         if(!TextUtils.isEmpty(response)){
             String counties[] = response.split(",");
             if(counties==null||counties.length==0){
                 return false;
             }
             for(String county:counties){
-                String p_info[] = county.split("|");
+                String p_info[] = county.split("\\|");
                 County p = new County();
                 p.setCode(p_info[0]);
                 p.setName(p_info[1]);
-                p.setCityId(city_id);
+                p.setCityId(city_code);
                 yiWeatherDB.saveCounty(p);
             }
             return true;
