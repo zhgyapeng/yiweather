@@ -1,6 +1,7 @@
 package com.zyp.practise.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -49,7 +50,8 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         temp1Text = (TextView) findViewById(R.id.temp1);
         temp2Text = (TextView) findViewById(R.id.temp2);
         currentDayText = (TextView) findViewById(R.id.current_date);
-        /*switchCity = findViewById(R.id.switch)*/
+        switchCity = (Button) findViewById(R.id.switch_city);
+        refreshWeather = (Button) findViewById(R.id.refresh_weather);
         String countyCode = getIntent().getStringExtra("county_code");
         if(!TextUtils.isEmpty(countyCode)){
             publishTimeText.setText("同步中...");
@@ -59,6 +61,8 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
         }else{
             showWeather();
         }
+        switchCity.setOnClickListener(this);
+        refreshWeather.setOnClickListener(this);
     }
 
     /**
@@ -129,6 +133,24 @@ public class WeatherActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()){
+            case R.id.refresh_weather:{
+                publishTimeText.setText("同步中...");
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+                String weatherCode = prefs.getString("weather_code","");
+                if(!TextUtils.isEmpty(weatherCode)){
+                    queryWeatherInfo(weatherCode);
+                }
+                break;
+            }
+            case R.id.switch_city:{
+                Intent intent = new Intent(this,ChooseAreaActivity.class);
+                intent.putExtra("from_weather_activity",true);
+                startActivity(intent);
+                finish();
+                break;
+            }
+            default:break;
+        }
     }
 }
